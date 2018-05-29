@@ -12,7 +12,7 @@ generate_dynamic_reconfigure_options(cfg/ImuFilterMadgwick.cfg)
 catkin_package(
   DEPENDS Boost
   CATKIN_DEPENDS roscpp sensor_msgs geometry_msgs tf2_ros tf2_geometry_msgs nodelet pluginlib message_filters dynamic_reconfigure
-  INCLUDE_DIRS
+  INCLUDE_DIRS include
   LIBRARIES imu_filter imu_filter_nodelet
 )
 
@@ -24,7 +24,7 @@ include_directories(
 
 
 # create imu_filter library
-add_library (imu_filter src/imu_filter.cpp  src/imu_filter_ros.cpp src/stateless_orientation.cpp)
+add_library (imu_filter src/imu_filter.cpp  src/imu_filter_ros.cpp src/stateless_orientation.cpp include/imu_filter_madgwick/imu_filter.h include/imu_filter_madgwick/imu_filter_ros.h)
 add_dependencies(imu_filter ${PROJECT_NAME}_gencfg)
 target_link_libraries(imu_filter ${catkin_LIBRARIES} ${Boost_LIBRARIES})
 
